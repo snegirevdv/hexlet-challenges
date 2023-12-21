@@ -5,11 +5,6 @@
 # все ключи из двух входящих, а значением строка с описанием отличий: #
 # added, deleted, changed или unchanged.
 
-# added — ключ отсутствовал в первом словаре, но был добавлен во второй
-# deleted — ключ был в первом словаре, но отсутствует во втором
-# changed — ключ присутствовал и в первом и во втором словаре, но значения отличаются
-# unchanged — ключ присутствовал и в первом и во втором словаре с одинаковыми значениями
-
 
 def gen_diff(dict1: dict, dict2: dict) -> dict:
     keys = set(dict1) | set(dict2)
@@ -55,6 +50,7 @@ def test_gen_diff():
         "seven": "deleted",
         "eighth": "added",
     }
+
 
 test_gen_diff_with_empty_dict()
 test_gen_diff()
