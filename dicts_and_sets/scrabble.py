@@ -1,9 +1,5 @@
 # https://ru.hexlet.io/challenges/python_dicts_scrabble_exercise/i
 
-# Реализуйте функцию-предикат, которая принимает на вход два параметра:
-# набор символов (строку) и слово. Функция должна проверять, можно ли из
-# переданного набора составить это слово. Функция возвращает True или False.
-
 from collections import Counter
 
 
@@ -32,15 +28,15 @@ def scrabble3(symbols: str, word: str) -> bool:
 
 
 def test_scrabble(scrabble):
-    assert scrabble('begsdhhtsexoult', 'hexlet') is True
-    assert scrabble('rkqodlw', 'world') is True
-    assert scrabble('begsdhhtsexoult', 'hexlet') is True
-    assert scrabble('katas', 'steak') is False
-    assert scrabble('scriptjava', 'javascript') is True
-    assert scrabble('scriptingjava', 'javascript') is True
-    assert scrabble('scriptjavest', 'javascript') is False
-    assert scrabble('', 'hexlet') is False
-    assert scrabble('scriptingjava', 'JavaScript') is True
+    assert scrabble("begsdhhtsexoult", "hexlet") is True
+    assert scrabble("rkqodlw", "world") is True
+    assert scrabble("begsdhhtsexoult", "hexlet") is True
+    assert scrabble("katas", "steak") is False
+    assert scrabble("scriptjava", "javascript") is True
+    assert scrabble("scriptingjava", "javascript") is True
+    assert scrabble("scriptjavest", "javascript") is False
+    assert scrabble("", "hexlet") is False
+    assert scrabble("scriptingjava", "JavaScript") is True
 
 
 test_scrabble(scrabble1)

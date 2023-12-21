@@ -1,10 +1,5 @@
 # https://ru.hexlet.io/challenges/python_dicts_operations_exercise
 
-# Реализуйте функцию gen_diff, которая сравнивает два словаря и возвращает
-# результат сравнения в виде словаря. Ключами результирующего словаря будут
-# все ключи из двух входящих, а значением строка с описанием отличий: #
-# added, deleted, changed или unchanged.
-
 
 def gen_diff(dict1: dict, dict2: dict) -> dict:
     keys = set(dict1) | set(dict2)
@@ -39,8 +34,8 @@ def test_gen_diff():
         {"five": 5, "six": 6},
         {"six": "xis", "five": 5},
     ) == {
-        "six": 'changed',
-        "five": 'unchanged',
+        "six": "changed",
+        "five": "unchanged",
     }
 
     assert gen_diff(
