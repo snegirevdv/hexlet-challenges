@@ -26,11 +26,11 @@ def make():
 
 
 # Решение
-def get_index(key: bytes) -> int:
+def get_index(key: str | bytes) -> int:
     return zlib.crc32(key) % 1000
 
 
-def set_(m: Map, key: bytes, value: Any) -> bool:
+def set_(m: Map, key: str | bytes, value: Any) -> bool:
     index = get_index(key)
     if m[index] and m[index][0] != key:  # проверка коллизии
         return False
@@ -38,9 +38,9 @@ def set_(m: Map, key: bytes, value: Any) -> bool:
     return True
 
 
-def get_(m: Map, key: bytes, default: Any | None = None) -> Any | None:
+def get_(m: Map, key: str | bytes, default: Any | None = None) -> Any | None:
     index = get_index(key)
-    if not m[index]:
+    if m[index] is None:
         return default
     if m[index][0] == key:  # проверка коллизии
         return m[index][1]

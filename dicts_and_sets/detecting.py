@@ -3,11 +3,10 @@
 
 # Решение
 def is_match(book: dict, request: dict) -> bool:
-    for param, value in request.items():
-        # if book.get(param, object()) != value:
-        if param not in book or book[param] != value:
-            return False
-    return True
+    try:
+        return all(book[param] == request[param] for param in request)
+    except KeyError:
+        return False
 
 
 def find_where(books: list[dict], request: dict) -> dict | None:

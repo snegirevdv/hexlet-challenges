@@ -24,7 +24,7 @@ def scrabble2(symbols: str, word: str) -> bool:
 def scrabble3(symbols: str, word: str) -> bool:
     counter = Counter(symbols.lower())
     counter.subtract(word.lower())
-    return all([counter[symbol] >= 0 for symbol in counter])
+    return all(counter[symbol] >= 0 for symbol in counter)
 
 
 def test_scrabble(scrabble):
