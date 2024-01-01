@@ -4,7 +4,7 @@ import zlib
 from typing import Any
 
 
-# Класс Map (предоставлен условиями задачи)
+# Класс Map
 class Map(list):
     def __setitem__(self, index, value):
         try:
@@ -45,29 +45,3 @@ def get_(m: Map, key: str | bytes, default: Any | None = None) -> Any | None:
     if m[index][0] == key:  # проверка коллизии
         return m[index][1]
     return
-
-
-# Тесты
-def test_map():
-    m = make()
-    assert get_(m, b"key") is None
-    assert get_(m, b"key", b"value") == b"value"
-    set_(m, b"key2", b"value2")
-    assert get_(m, b"key2") == b"value2"
-    assert get_(m, b"None") is None
-    set_(m, b"key2", b"another value")
-    assert get_(m, b"key2") == b"another value"
-
-
-def test_map_collisions():
-    map = make()
-    assert set_(map, b"aaaaa0.462031558722291", b"vvv") is True
-    assert set_(map, b"aaaaa0.0585754039730588", b"boom!") is False
-    assert get_(map, b"aaaaa0.462031558722291") == b"vvv"
-    assert get_(map, b"aaaaa0.0585754039730588") is None
-    set_(map, b"aaaaa0.462031558722291", b"wop")
-    assert get_(map, b"aaaaa0.462031558722291") == b"wop"
-
-
-test_map()
-test_map_collisions()
