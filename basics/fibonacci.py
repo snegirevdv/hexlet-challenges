@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_basics_fib_exercise
 
+
 def fib(n: int) -> int:
     if n == 0:
         return 0

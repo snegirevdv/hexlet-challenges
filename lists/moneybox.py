@@ -3,7 +3,7 @@
 from collections import Counter
 
 
-def visualize(coins: tuple[int], bar_char: str = '₽') -> str:
+def visualize(coins: tuple[int], bar_char: str = "₽") -> str:
     """Visualize money in a money box."""
     counter = Counter(coins)
     result_list: list[str] = []

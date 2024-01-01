@@ -9,4 +9,3 @@ def to_rna(dna: str) -> str:
         "A": "U",
     }
     return "".join(DNA_TO_RNA[nt] for nt in dna)
-

@@ -1,8 +1,9 @@
 # https://ru.hexlet.io/challenges/python_lists_longest_substring_exercise
 
+
 def find_longest_length(string: str) -> int:
     substring_lenghts: list[int] = []
-    current_str = ''
+    current_str = ""
     charset = {}
 
     for i, char in enumerate(string):

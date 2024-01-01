@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_lists_ascending_sequence_exercise
 
+
 def is_continuous_sequence(sequence: list[int]) -> bool:
     if len(sequence) <= 1:
         return False

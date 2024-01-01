@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_lists_snail_exercise
 
+
 def snail_path(matrix: list[list]) -> list:
     if not matrix:
         return []

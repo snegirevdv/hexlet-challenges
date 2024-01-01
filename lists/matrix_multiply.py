@@ -1,6 +1,7 @@
 # https://ru.hexlet.io/challenges/python_lists_matrix_multiplication_exercise
 
-def multiply(matrix1: list[list[int]], matrix2: list[list[int]]) -> list[list[int]]:
+
+def multiply(matrix1: list[list], matrix2: list[list]) -> list[list]:
     m = len(matrix1)
     n = len(matrix1[0])
     if len(matrix2) != n:
@@ -12,7 +13,10 @@ def multiply(matrix1: list[list[int]], matrix2: list[list[int]]) -> list[list[in
     for i in range(m):
         current_row: list[int] = []
         for j in range(k):
-            current_row.append(sum(matrix1[i][t] * matrix2[t][j] for t in range(n)))
+            current_row.append(sum(
+                matrix1[i][t] * matrix2[t][j]
+                for t in range(n)
+            ))
         result.append(current_row)
 
     return result

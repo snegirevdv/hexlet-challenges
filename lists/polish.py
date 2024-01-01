@@ -4,10 +4,10 @@ from operator import add, sub, mul, truediv
 from typing import Callable
 
 OPERATIONS: dict[str, Callable] = {
-        "+": add,
-        "-": sub,
-        "*": mul,
-        "/": truediv,
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": truediv,
 }
 
 

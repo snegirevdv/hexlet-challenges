@@ -35,7 +35,7 @@ def to_arabic(roman: str) -> int:
             return False
         while roman.startswith(digit):
             result += value
-            roman = roman[len(digit) :]
+            roman = roman[len(digit):]
     if roman:
         return False
     return result

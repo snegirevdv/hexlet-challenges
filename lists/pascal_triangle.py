@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_lists_pascal_triangle_exercise
 
+
 def fact(num):
     result = 1
     for i in range(2, num + 1):

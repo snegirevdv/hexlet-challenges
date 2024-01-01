@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_basics_happy_ticket_exercise
 
+
 def get_sum(string: str) -> int:
     return sum(map(int, string))
 

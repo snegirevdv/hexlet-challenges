@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_lists_sum_of_intervals_exercise
 
+
 def sum_of_intervals(intervals: list[list[int]]) -> int:
     counted_nums = []
     for interval in intervals:

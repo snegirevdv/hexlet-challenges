@@ -1,5 +1,6 @@
 # https://ru.hexlet.io/challenges/python_basics_encrypt_exercise
 
+
 def encrypt(text):
     result = ""
     i = 0
