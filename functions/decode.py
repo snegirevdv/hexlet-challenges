@@ -1,4 +1,4 @@
-# https://ru.hexlet.io/challenges/python_functions_nrzi_exercise/instance
+# https://ru.hexlet.io/challenges/python_functions_nrzi_exercise/
 
 def decode(signal: str) -> str:
     decoded_1 = signal.replace("|_", "1").replace("|¯", "1")
