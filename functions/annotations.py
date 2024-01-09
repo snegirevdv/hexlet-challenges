@@ -1,6 +1,3 @@
-# https://ru.hexlet.io/courses/python-functions/lessons/positional-args/theory_unit
-
-from collections.abc import Callable
 from functools import wraps
 
 
@@ -13,107 +10,40 @@ def format_error(error):
     )
 
 
-def throw_error(*args):
-    """Raise one typing violation."""
-    raise TypeError(format_error(args))
-
-
-def throw_errors(errors):
+def throw_errors(info):
     """Raise one error for all typing violations."""
-    raise TypeError('\n'.join(map(format_error, errors)))
+    if isinstance(info, list):
+        raise TypeError('\n'.join(map(format_error, info)))
+    raise TypeError(format_error(info))
 
 
-def check_errors_and_raise(kwargs: dict,
-                           annotations: dict,
-                           error_response: Callable,
-                           stop_after_error: bool,
-                           ) -> bool:
-    has_errors = False
-    for argument in kwargs:
-        value = kwargs[argument]
-        expected_type = annotations[argument]
-        try:
-            if (
-                argument in annotations and
-                not isinstance(value, expected_type)
-            ):
-                raise TypeError
-        except TypeError:
-            error_response(argument, value, expected_type)
-            has_errors = True
-            if stop_after_error:
-                return has_errors
-    return has_errors
-
-
-def typecheck(error_callback=throw_error):
-    """
-    Добавляет к функции предусловие, проверяющие типы аргументов.
-
-    Проверка типов делается на основе аннотаций, указанных в сигнатуре
-    оборачиваемой функции.
-
-    Arguments:
-        error_callback - функция, получающая информацию об ошибке типизации.
-        Функция принимает имя аргумента, значение и ожидаемый тип.
-        Обычно error_callback ничего не возвращает, а вместо этого возбуждает
-        исключение (см. реализацию по умолчанию - throw_error).
-
-    Returns:
-        Декоратор, добавляющий проверку типов к функции.
-
-    """
+def typechecker(error_callback, stop_after_error):
     def wrapper(func):
         @wraps(func)
         def inner(**kwargs):
             annotations = func.__annotations__
-            has_errors = check_errors_and_raise(
-                kwargs,
-                annotations,
-                error_response=error_callback,
-                stop_after_error=True,
-            )
-            if not has_errors:
-                return func(**kwargs)
+            errors = []
+            for argument in kwargs:
+                value = kwargs[argument]
+                expected_type = annotations[argument]
+                if (
+                    argument in annotations and
+                    not isinstance(value, expected_type)
+                ):
+                    errors.append((argument, value, expected_type))
+                    if stop_after_error:
+                        return error_callback(*errors[0])
+            return func(**kwargs) if not errors else error_callback(errors)
         return inner
     return wrapper
+
+
+def typecheck(error_callback=throw_errors):
+    return typechecker(error_callback, stop_after_error=True)
 
 
 def typecheck_all(error_callback=throw_errors):
-    """
-    Добавляет к функции предусловие, проверяющие типы аргументов.
-
-    Проверка типов делается на основе аннотаций, указанных в сигнатуре
-    оборачиваемой функции.
-
-    Arguments:
-        error_callback - функция, получающая информацию об ошибке типизации.
-        Функция принимает список кортежей, описывающих все ошибки типизации.
-        Каждый кортеж содержит имя аргумента, значение и ожидаемый тип.
-        Обычно error_callback ничего не возвращает, а вместо этого возбуждает
-        исключение (см. реализацию по умолчанию - throw_errors).
-
-    Returns:
-        Декоратор, добавляющий проверку типов к функции.
-
-    """
-    def wrapper(func):
-        @wraps(func)
-        def inner(**kwargs):
-            errors = []
-            annotations = func.__annotations__
-            has_errors = check_errors_and_raise(
-                kwargs,
-                annotations,
-                error_response=lambda *x: errors.append((x)),
-                stop_after_error=False,
-            )
-            print(errors)
-            if not has_errors:
-                return func(**kwargs)
-            error_callback(errors)
-        return inner
-    return wrapper
+    return typechecker(error_callback, stop_after_error=False)
 
 
 if __name__ == '__main__':
@@ -124,5 +54,4 @@ if __name__ == '__main__':
     print(multiply(times=10, value=(42,)))
     print(multiply(times=10, value='1'))
 
-    # оба аргумента — не того типа
     print(multiply(times='12', value=None))
