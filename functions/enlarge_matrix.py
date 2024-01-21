@@ -21,6 +21,3 @@ def enlarge(matrix: TypeMatrix) -> TypeMatrix:
     convertor_to_list = compose(list)(map_creator)
     row_duplicator = curry(reduce)(add)
     return convertor_to_list(row_duplicator(map(pair, matrix)))
-
-
-print(enlarge([' * ', '  *', '***']))

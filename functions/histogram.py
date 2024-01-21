@@ -3,7 +3,7 @@ from collections import Counter
 from collections.abc import Callable
 
 
-def histo(rounds_count: int, roll_die: Callable) -> str:
+def histo1(rounds_count: int, roll_die: Callable) -> str:
     rolls = (roll_die() for _ in range(rounds_count))
     stat = Counter(rolls)
     lines = map(
@@ -13,7 +13,7 @@ def histo(rounds_count: int, roll_die: Callable) -> str:
     return "\n".join(lines)
 
 
-def histo(rounds_count: int, roll_die: Callable) -> str:
+def histo2(rounds_count: int, roll_die: Callable) -> str:
     stat = [0] * 6
     result = []
     for _ in range(rounds_count):
