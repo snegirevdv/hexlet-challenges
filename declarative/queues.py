@@ -1,19 +1,6 @@
 from collections.abc import Iterator
 
 
-def round_robin(*iterables) -> Iterator:
-    iters = [iter(iterable) for iterable in iterables]
-    needs_break = False
-    while not needs_break:
-        needs_break = True
-        for iterator in iters:
-            try:
-                yield next(iterator)
-                needs_break = False
-            except StopIteration:
-                continue
-
-
 def round_robin2(*iterables) -> Iterator:
     iters = [iter(iterable) for iterable in iterables]
     needs_break = False
