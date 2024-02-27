@@ -24,9 +24,3 @@ def get_next_numbers_list(number, history):
         for index, value in enumerate(history[:-1])
         if value == number
     )
-
-
-
-print(calculate_probabilities([]))
-print(calculate_probabilities([2, 3, 2, 5, 2, 2, 1, 3, 6]))
-print(get_next_numbers_list(6, [2, 3, 2, 5, 2, 2, 1, 3, 6]))
